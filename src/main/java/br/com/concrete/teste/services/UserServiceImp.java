@@ -23,6 +23,8 @@ public class UserServiceImp implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private JwtToken jwtToken;
 
     private BCryptPasswordEncoder encoder;
 
@@ -38,6 +40,7 @@ public class UserServiceImp implements UserService {
         }
 
         user.setPassword(this.encoder.encode(user.getPassword()));
+        user.setToken(jwtToken.generateToken(user.getEmail()));
         user.setLast_login(LocalDateTime.now());
         return new ResponseEntity(userRepository.save(user), HttpStatus.CREATED);
     }
