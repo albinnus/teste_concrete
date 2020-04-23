@@ -14,6 +14,6 @@ public class LoginController {
 
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> login(@RequestBody AuthRequest authRequest){
-       return this.loginService.auth(authRequest.getLogin(), authRequest.getPassword());
+       return this.loginService.auth(authRequest.getEmail(), authRequest.getPassword());
     }
 }

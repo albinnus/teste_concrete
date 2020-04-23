@@ -47,7 +47,7 @@ public class UserServiceImp implements UserService {
         return this.userRepository.save(user);
     }
 
-    public Boolean checkEmail(String email) {
+    private Boolean checkEmail(String email) {
         return this.userRepository.countByEmail(email) > 0;
     }
 

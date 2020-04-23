@@ -59,9 +59,6 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        // configure AuthenticationManager so that it knows from where to load
-        // user for matching credentials
-        // Use BCryptPasswordEncoder
         auth.userDetailsService(userDetailsService()).passwordEncoder(getPasswordEncoder());
     }
 
@@ -69,8 +66,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
 
 
-        http.csrf()
-                .disable()
+        http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers( "/register/user**").permitAll()
                 .antMatchers( AUTH_WHITELIST).permitAll()
@@ -93,15 +89,7 @@ public class ConfigSecurity extends WebSecurityConfigurerAdapter
                             .put("mensagem", Constante.UNAUTHORIZED)
                             .toString());
                 });
-                /*.and()
-                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandle())
-                .and()
-                .exceptionHandling().authenticationEntryPoint(new Custom403AccessDeniedHandler())
-                .and()
 
-                // filtra outras requisições para verificar a presença do JWT no header
-                .addFilterBefore(new AuthFilter(),
-                        UsernamePasswordAuthenticationFilter.class);*/
     }
 
     @Override
