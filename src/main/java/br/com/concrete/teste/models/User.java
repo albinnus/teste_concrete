@@ -25,15 +25,11 @@ public class User {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-    //    @NotNull
     private String name;
 
-    //    @NotNull
     @Column(unique = true)
-//    @Pattern(regexp="[A-Za-z0-9._%-+]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
     private String email;
 
-    //    @NotNull
     private String password;
 
     @ElementCollection
